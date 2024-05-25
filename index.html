@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Chart</title>
+    <!-- Incluye Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="miGrafico" width="400" height="400"></canvas>
+
+    <script>
+        // Función para crear el gráfico con los datos del algoritmo de scan
+        function crearGrafico(datosScan) {
+            var ctx = document.getElementById('miGrafico').getContext('2d');
+            var miGrafico = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels:  [65, 59, 80, 81, 56, 55, 40],
+                    datasets: [{
+                        label: 'SCAN',
+                        data: datosScan.etiquetas,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                }
+            });
+
+            return miGrafico;
+        }
+
+        // Supongamos que esta función representa tu algoritmo de scan
+        function algoritmoDeScan() {
+            // Aquí generas tus datos de ejemplo
+            var datosScan = {
+                etiquetas: [ "1", "2", "3", "4", "5"],
+                valores: [10, 20, 15, 25, 30]
+            };
+
+            return datosScan;
+        }
+
+        // Cuando la página se carga, crea el gráfico con los datos del algoritmo de scan
+        document.addEventListener('DOMContentLoaded', function() {
+            var datosScan = algoritmoDeScan();
+            var miGrafico = crearGrafico(datosScan);
+        });
+    </script>
+</body>
+</html>
